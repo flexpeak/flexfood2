@@ -61,6 +61,14 @@ class UsuarioController {
       })
     }
   }
+
+  static async verificarToken(req, res, next) {
+    const token = req.headers['authorization']
+    jwt.verify(token, '#!@#', async (error, success) => {
+      req.usuario_id = success
+    })
+    next()
+  }
 }
 
 module.exports = UsuarioController
