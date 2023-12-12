@@ -6,10 +6,10 @@ const router = require('express').Router()
 router.post('/usuarios', UsuarioController.store)
 router.post('/usuarios/login', UsuarioController.login)
 
-router.get('/restaurantes', RestauranteController.index)
+router.get('/restaurantes', UsuarioController.verificarToken, RestauranteController.index)
 router.post('/restaurantes', UsuarioController.verificarToken, RestauranteController.store)
-router.get('/restaurantes/:id', RestauranteController.show)
-router.put('/restaurantes/:id', RestauranteController.update)
-router.delete('/restaurante/:id', RestauranteController.destroy)
+router.get('/restaurantes/:id', UsuarioController.verificarToken, RestauranteController.show)
+router.put('/restaurantes/:id', UsuarioController.verificarToken, RestauranteController.update)
+router.delete('/restaurantes/:id', UsuarioController.verificarToken, RestauranteController.destroy)
 
 module.exports = router
