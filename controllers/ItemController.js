@@ -1,6 +1,25 @@
 const { itens } = require('../models')
 
 class ItemController {
+
+  static async index(req, res) {
+    try {
+      const itensList = await itens.findAll({
+        where: {
+          restaurante_id: req.params.restaurante_id
+        }
+      })
+
+      res.json(itensList)
+
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        error: "Não foi possível realizar operação"
+      })
+    }
+  }
+
   static async store(req, res) {
     try {
       const item = await itens.create({
