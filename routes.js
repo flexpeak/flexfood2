@@ -27,7 +27,7 @@ router.delete('/restaurantes/:id', UsuarioController.verificarToken, Restaurante
 
 router.get('/itens/:restaurante_id', UsuarioController.verificarToken, ItemController.index)
 router.post('/itens/:restaurante_id', UsuarioController.verificarToken, upload.single('foto'), ItemController.store)
-// router.get('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.show)
+router.get('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.show)
 // router.put('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.update)
 // router.delete('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.destroy)
 

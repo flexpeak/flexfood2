@@ -1,6 +1,23 @@
 const { itens } = require('../models')
 
 class ItemController {
+  static async show(req, res) {
+    try {
+      const item = await itens.findOne({
+        where: {
+          id: req.params.id,
+          restaurante_id: req.params.restaurante_id
+        }
+      })
+
+      res.json(item)
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        error: "Não foi possível realizar operação"
+      })
+    }
+  }
 
   static async index(req, res) {
     try {
