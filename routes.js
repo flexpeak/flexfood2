@@ -11,24 +11,30 @@ const upload = multer({ storage: multer.diskStorage({
 }) })
 
 const RestauranteController = require('./controllers/RestauranteController')
-const UsuarioController = require('./controllers/UsuarioController')
 const ItemController = require('./controllers/ItemController')
+const PedidoClienteController = require('./controllers/PedidoClienteController')
+const PedidoRestauranteController = require('./controllers/PedidoRestauranteController')
 
 const router = require('express').Router()
 
-router.post('/usuarios', UsuarioController.store)
-router.post('/usuarios/login', UsuarioController.login)
+router.get('/restaurantes', RestauranteController.index)
+router.post('/restaurantes', RestauranteController.store)
+router.get('/restaurantes/:id', RestauranteController.show)
+router.put('/restaurantes/:id', RestauranteController.update)
+router.delete('/restaurantes/:id', RestauranteController.destroy)
 
-router.get('/restaurantes', UsuarioController.verificarToken, RestauranteController.index)
-router.post('/restaurantes', UsuarioController.verificarToken, RestauranteController.store)
-router.get('/restaurantes/:id', UsuarioController.verificarToken, RestauranteController.show)
-router.put('/restaurantes/:id', UsuarioController.verificarToken, RestauranteController.update)
-router.delete('/restaurantes/:id', UsuarioController.verificarToken, RestauranteController.destroy)
+router.get('/itens/:restaurante_id', ItemController.index)
+router.post('/itens/:restaurante_id', upload.single('foto'), ItemController.store)
+router.get('/itens/:restaurante_id/:id', ItemController.show)
+router.put('/itens/:restaurante_id/:id', upload.single('foto'), ItemController.update)
+router.delete('/itens/:restaurante_id/:id', ItemController.destroy)
 
-router.get('/itens/:restaurante_id', UsuarioController.verificarToken, ItemController.index)
-router.post('/itens/:restaurante_id', UsuarioController.verificarToken, upload.single('foto'), ItemController.store)
-router.get('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.show)
-// router.put('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.update)
-// router.delete('/itens/:restaurante_id/:id', UsuarioController.verificarToken, ItemController.destroy)
+router.get('/cliente/pedidos', PedidoClienteController.index)
+router.post('/cliente/pedidos', PedidoClienteController.create)
+router.get('/cliente/pedidos/:id', PedidoClienteController.show)
+router.put('/cliente/pedidos/:id', PedidoClienteController.update)
+
+router.get('/restaurante/pedidos/:restaurante_id', PedidoRestauranteController.index)
+router.put('/restaurante/pedidos/:id/:restaurante_id', PedidoRestauranteController.update)
 
 module.exports = router
