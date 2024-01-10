@@ -36,28 +36,34 @@ class UsuarioController {
   }
 
   static async login(req, res) {
-
-    const usuario = await usuarios.findOne({
-      where: {
-        email: req.body.email
-      }
-    })
-
-    if (usuario) {
-      const match = await bcrypt.compare(req.body.senha, usuario.senha)
-      if (match) {
-        const token = await jwt.sign(usuario.id, '#!@#')
-        res.json({
-          token: token
-        })
+    try {
+      const usuario = await usuarios.findOne({
+        where: {
+          email: req.body.email
+        }
+      })
+  
+      if (usuario) {
+        const match = await bcrypt.compare(req.body.senha, usuario.senha)
+        if (match) {
+          const token = await jwt.sign(usuario.id, '#!@#')
+          res.json({
+            token: token
+          })
+        } else {
+          res.status(401).json({
+            error: "Usuário ou senha inválda"
+          })
+        }
       } else {
         res.status(401).json({
-          error: "Usuário ou senha inválda"
+          error: "Usuário ou senha inválida"
         })
       }
-    } else {
-      res.status(401).json({
-        error: "Usuário ou senha inválida"
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        error: e.message
       })
     }
   }
