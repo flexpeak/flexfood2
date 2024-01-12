@@ -48,7 +48,8 @@ class UsuarioController {
         if (match) {
           const token = await jwt.sign(usuario.id, '#!@#')
           res.json({
-            token: token
+            token: token,
+            tipo: usuario.tipo
           })
         } else {
           res.status(401).json({
