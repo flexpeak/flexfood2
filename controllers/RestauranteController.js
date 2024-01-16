@@ -7,7 +7,8 @@ class RestauranteController {
         nome: req.body.nome,
         telefone: req.body.telefone,
         endereco: req.body.endereco,
-        usuario_id: req.usuario_id
+        usuario_id: req.usuario_id,
+        logo: req.file ? req.file.path : null
       })
 
       res.json(restaurante)
@@ -67,7 +68,8 @@ class RestauranteController {
       restaurante.update({
         nome: req.body.nome,
         telefone: req.body.telefone,
-        endereco: req.body.endereco
+        endereco: req.body.endereco,
+        logo: req.file ? req.file.path : restaurante.logo
       })
 
       res.json(restaurante)

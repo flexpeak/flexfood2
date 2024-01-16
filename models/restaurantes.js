@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     nome: DataTypes.STRING,
     telefone: DataTypes.STRING,
     endereco: DataTypes.STRING,
-    usuario_id: DataTypes.INTEGER
+    usuario_id: DataTypes.INTEGER,
+    logo: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'restaurantes',

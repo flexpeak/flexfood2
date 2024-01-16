@@ -18,9 +18,9 @@ const PedidoRestauranteController = require('./controllers/PedidoRestauranteCont
 const router = require('express').Router()
 
 router.get('/restaurantes', RestauranteController.index)
-router.post('/restaurantes', RestauranteController.store)
+router.post('/restaurantes', upload.single('logo'), RestauranteController.store)
 router.get('/restaurantes/:id', RestauranteController.show)
-router.put('/restaurantes/:id', RestauranteController.update)
+router.put('/restaurantes/:id', upload.single('logo'), RestauranteController.update)
 router.delete('/restaurantes/:id', RestauranteController.destroy)
 
 router.get('/itens/:restaurante_id', ItemController.index)
