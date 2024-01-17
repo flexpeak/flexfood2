@@ -71,10 +71,16 @@ class UsuarioController {
 
   static async verificarToken(req, res, next) {
     const token = req.headers['authorization']
-    jwt.verify(token, '#!@#', async (error, success) => {
-      req.usuario_id = success
-    })
-    next()
+    if (!token) {
+      res.status(401).json({
+        error: "Token não enviado"
+      })
+    } else {
+      jwt.verify(token, '#!@#', async (error, success) => {
+        req.usuario_id = success
+      })
+      next()
+    }
   }
 }
 
