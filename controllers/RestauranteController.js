@@ -37,6 +37,21 @@ class RestauranteController {
     }
   }
 
+  static async todos(req, res) {
+    try {
+      const listaRestaurantes = await restaurantes.findAll()
+      res.status(200).json({
+        restaurantes: listaRestaurantes
+      })
+      
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        error: "Não foi possível realizar operação"
+      })
+    }
+  }
+
   static async show(req, res) {
     try {
       const id = req.params.id

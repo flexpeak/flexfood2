@@ -23,6 +23,8 @@ router.get('/restaurantes/:id', RestauranteController.show)
 router.put('/restaurantes/:id', upload.single('logo'), RestauranteController.update)
 router.delete('/restaurantes/:id', RestauranteController.destroy)
 
+router.get('/todos-restaurantes', RestauranteController.todos)
+
 router.get('/itens/:restaurante_id', ItemController.index)
 router.post('/itens/:restaurante_id', upload.single('foto'), ItemController.store)
 router.get('/itens/:restaurante_id/:id', ItemController.show)
