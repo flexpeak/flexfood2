@@ -4,9 +4,6 @@ class PedidoRestauranteController {
   static async index(req, res) {
     try {
       const pedidosList = await pedidos.findAll({
-        where: {
-          restaurante_id: req.params.restaurante_id
-        },
         include: ['usuario', 'restaurante', 'itens']
       })
 
@@ -21,8 +18,7 @@ class PedidoRestauranteController {
     try {
       const pedido = await pedidos.findOne({
         where: {
-          id: req.params.id,
-          restaurante_id: req.params.restaurante_id
+          id: req.params.id
         }
       })
 

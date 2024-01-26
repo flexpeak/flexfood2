@@ -36,7 +36,7 @@ router.post('/cliente/pedidos', PedidoClienteController.create)
 router.get('/cliente/pedidos/:id', PedidoClienteController.show)
 router.put('/cliente/pedidos/:id', PedidoClienteController.update)
 
-router.get('/restaurante/pedidos/:restaurante_id', PedidoRestauranteController.index)
-router.put('/restaurante/pedidos/:id/:restaurante_id', PedidoRestauranteController.update)
+router.get('/restaurante/pedidos/', PedidoRestauranteController.index)
+router.put('/restaurante/pedidos/:id', PedidoRestauranteController.update)
 
 module.exports = router

@@ -9,6 +9,7 @@ class PedidoClienteController {
         where: {
           usuario_id: req.usuario_id
         },
+        include: ['usuario', 'restaurante', 'itens']
       })
 
       res.json(pedidosList)
