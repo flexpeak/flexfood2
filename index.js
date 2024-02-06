@@ -14,6 +14,6 @@ app.use(express.static('public'))
 app.use('/', publicRoutes)
 app.use('/', UsuarioController.verificarToken, routes)
 
-app.listen(3001, () => {
+app.listen(443, () => {
   console.log(`Servidor iniciado`)
 })
